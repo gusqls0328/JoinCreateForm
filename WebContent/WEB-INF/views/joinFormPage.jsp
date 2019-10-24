@@ -122,7 +122,7 @@ html, body {
 					
 				<div class="form-group">
 					<label for="mpassword">비밀번호</label>
-					<input type="password" class="form-control" id="mpassword"
+					<input type="password" class="form-control" id="mpassword" name="mpassword"
 						placeholder="비밀번호를 입력하세요">
 					<span id="mpasswordError" class="error" style="color: red">${mpasswordError}</span>
 				</div>

@@ -1,6 +1,5 @@
 package com.mycompany.web.service;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,5 +18,17 @@ public class JoinService {
 		joinMemberDao.insert(joinMember);
 		
 	}
+
+
+
+//	public static boolean checkMid(String mid) {
+//		JoinMember joinMember = joinMemberDao.selectMember(mid);
+//		if(joinMember == null) {
+//			return true;	
+//		} else {
+//			return false;
+//		}		
+//		
+//	}
 
 }

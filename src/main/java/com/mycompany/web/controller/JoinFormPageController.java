@@ -1,8 +1,12 @@
 package com.mycompany.web.controller;
 
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import org.json.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,5 +50,17 @@ public class JoinFormPageController {
 		joinService.join(joinMember);
 		return "nextpage/nextPage01";
 	}
+	
+//	@RequestMapping("/checkMid")
+//	public void checkMid(String mid, HttpServletResponse response) throws Exception {
+//		boolean result = JoinService.checkMid(mid);
+//		response.setContentType("application/json; charset=UTF-8");
+//		PrintWriter pw = response.getWriter();
+//		JSONObject jsonObject = new JSONObject();
+//		jsonObject.put("result", result);
+//		pw.print(jsonObject.toString());
+//		pw.flush();
+//		pw.close();
+//	}
 	
 }
