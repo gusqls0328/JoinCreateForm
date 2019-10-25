@@ -21,14 +21,19 @@ public class JoinService {
 
 
 
-//	public static boolean checkMid(String mid) {
-//		JoinMember joinMember = joinMemberDao.selectMember(mid);
-//		if(joinMember == null) {
-//			return true;	
-//		} else {
-//			return false;
-//		}		
-//		
-//	}
+	public boolean checkMid(String mid) {
+		
+		JoinMember joinMember = joinMemberDao.selectJoinMember(mid);
+		if (joinMember == null) {
+			
+			return true;	
+		} else {
+			
+			return false;
+		}
+		
+	}
+
+
 
 }

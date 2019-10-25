@@ -16,26 +16,28 @@
 <script type="text/javascript">
 	
 	function checkForm() {
-		
+		console.log("aaa");
 		var result = true;
 		
 		$(".error").text("");
 		$(".error").css("color", "red");
 		
-		if ($("#mid").val() == "") {
-			$("#midError").text("아이디를 입력하세요");
-			return false;
-		}
-		if ($("mpassword").val() == "") {
-			$("#mpasswordError").text("비밀번호를 입력하세요");
-			return false;
-			
-		}
+		
 		if ($("#mname").val() == "") {
 			$("#mnameError").text("이름을 입력하세요");
 			return false;
 		}
+		if ($("#mid").val() == "") {
+			$("#midError").text("아이디를 입력하세요");
+			return false;
+		}
+		if ($("#mpassword").val() == "") {
+			$("#mpasswordError").text("비밀번호를 입력하세요");
+			return false;
+			
+		}
 		
+		console.log("bbb");
 		
 		return result;
 	}
@@ -48,13 +50,16 @@
 			url: "checkMid", 
 			data: {mid:$("#mid").val()},
 			success: function(data) {
+				
 				if (data.result) {
-					$("midError").text("사용할 수 있는 아이디입니다");
-					$("midError").css("color", "blue");
+					$("#midError").text("사용할 수 있는 아이디입니다");
+					$("#midError").css("color", "blue");
 					
-				} else {
-					$("midError").text("사용할 수 없는 아이디입니다");
-					$("midError").css("color", "red");
+				} 
+				
+				else {
+					$("#midError").text("사용할 수 없는 아이디입니다");
+					$("#midError").css("color", "red");
 				}
 				
 				
@@ -99,7 +104,7 @@ html, body {
 	
 		<div id="content">
 
-			<form method="post" action="join" onsubmit="checkForm()">
+			<form method="post" action="join" onsubmit="return checkForm()">
 			
 				<div class="form-group">
 					<label for="mname">이름</label>

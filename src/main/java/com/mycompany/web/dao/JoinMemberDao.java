@@ -18,4 +18,14 @@ public class JoinMemberDao {
 		return rows;
 	}
 
+
+	
+	public JoinMember selectJoinMember(String mid) {
+		JoinMember joinMember = sqlSessionTemplate.selectOne("member.selectJoinMemberById", mid);
+		return joinMember;
+	}
+
+
+	
+
 }
