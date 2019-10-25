@@ -13,6 +13,18 @@
 <script type="text/javascript"
 	src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
+<script>
+	$(document).ready(function() {
+		$("#mid").blur(function() {
+			alert("중복체크를 해야 회원가입 진행이 가능합니다");
+				
+		});
+		
+	});
+
+
+</script>
+
 <script type="text/javascript">
 	
 	function checkForm() {
@@ -140,8 +152,8 @@ html, body {
 				
 				<div class="form-group">
 					<label for="mlevel">레벨</label>
-					<input type="text" class="form-control" id="mlevel" name="mlevel"
-						placeholder="시작 레벨은 0입니다">
+					<input type="hidden" class="form-control" id="mlevel" name="mlevel"
+						value="1" placeholder="시작 레벨은 0입니다">
 				</div>
 				--%>
 				<div>
