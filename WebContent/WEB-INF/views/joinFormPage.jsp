@@ -13,6 +13,7 @@
 <script type="text/javascript"
 	src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
+<!-- 
 <script>
 	$(document).ready(function() {
 		$("#mid").blur(function() {
@@ -22,19 +23,22 @@
 		
 	});
 
-
 </script>
-
+ -->
+ 
 <script type="text/javascript">
 	
+	var midCheck = "N";
+	var mid1;
+	
 	function checkForm() {
-		console.log("aaa");
+		
 		var result = true;
 		
 		$(".error").text("");
 		$(".error").css("color", "red");
-		
-		
+						
+						
 		if ($("#mname").val() == "") {
 			$("#mnameError").text("이름을 입력하세요");
 			return false;
@@ -48,14 +52,39 @@
 			return false;
 			
 		}
+		if ($("#mpassword").val() != $("#mpassword2").val()) {
+			alert("비밀번호가 같지 않습니다");
+			//$("input[name=midpassword2]").value("");
+			return false;
+			
+		} //$("input[name=first]").value("value 값 바꾸기");
 		
-		console.log("bbb");
+		if ($("#midCheck").val() == midCheck) {
+			if (midCheck == "N") {alert("중복체크를 하세요");
+			//$("#midCheckError").text("중복체크를 하세요");
+			return false;}
+			else if (midCheck == "Y") {
+				return true;
+				
+			}
+			
+			
+		}
+		if ($("#mid").val() != mid1) {
+			alert("중복체크를 다시하세요");
+			return false;
+		}
+		
+		
+		
 		
 		return result;
 	}
 	
 	
 	function checkMid() {
+		
+		
 		
 		$.ajax({
 			
@@ -67,23 +96,31 @@
 					$("#midError").text("사용할 수 있는 아이디입니다");
 					$("#midError").css("color", "blue");
 					
-				} 
+					//$("#afterCheckMid").hide();
+					midCheck = "Y";
+					mid1 = $("#mid").val()
+						
+					}
 				
 				else {
 					$("#midError").text("사용할 수 없는 아이디입니다");
 					$("#midError").css("color", "red");
+					
+					}
+							
+				
 				}
-				
-				
-			}
 			
 			
 			
-			
-		});
+			});
+	
 		
 		
 	}
+	
+	
+	
 	
 </script>
 
@@ -99,10 +136,26 @@ html, body {
 
 }
 
-#content {
+#content_wrap {
+	width:100%;
+	height:100%;
+	
 
-	margin: 200px;
-	height: 200px;
+}
+
+#content_wrap #content {
+
+	position:absolute;
+	left:35%;
+	top:20%;
+	transform:tlanslateX(-50%)tlanslateY(-50%);
+	width:500px;
+	height:500px;
+	padding:75px;
+	padding-top:45px;
+	background-color:white;
+	border-radius:25px;
+	
 }
 
 </style>
@@ -110,14 +163,14 @@ html, body {
 </head>
 
 <body>
-
-
-
-	
+																	
+													
+														
+	<div id="content_wrap">													
 		<div id="content">
-
+													
 			<form method="post" action="join" onsubmit="return checkForm()">
-			
+				<div id="head_text"><h5>회원가입</h5></div>					
 				<div class="form-group">
 					<label for="mname">이름</label>
 					<input type="text" class="form-control" id="mname" name="mname"
@@ -130,12 +183,19 @@ html, body {
 					<div class="input-group">
 						<input type="text" class="form-control" id="mid" name="mid"
 							placeholder="아이디를 입력하세요"/>
-						<div class="input-group-append">
-							<input onclick="checkMid()" type="button" class="btn btn-secondary" value="중복확인"/>	
+						<div id="afterCheckMid" class="input-group-append">
+							<input onclick="checkMid()" type="button" class="btn btn-secondary" value="중복확인"/>
+							<!-- <input name="midCheck" id="midCheck" type="hidden" value="N"/>  -->
 						</div>
 					</div>
 					<span id="midError" class="error" style="color: red">${midError}</span>
-				</div>	
+				</div>
+				 
+				<div class="form-group">
+					<input name="midCheck" id="midCheck" type="hidden" value="N"/>
+					<span id="midCheckError" class="error" style="color: red"></span>
+				</div>
+				
 					
 				<div class="form-group">
 					<label for="mpassword">비밀번호</label>
@@ -143,6 +203,14 @@ html, body {
 						placeholder="비밀번호를 입력하세요">
 					<span id="mpasswordError" class="error" style="color: red">${mpasswordError}</span>
 				</div>
+				
+				<div class="form-group">
+					<label for="mpassword2">비밀번호 확인</label>
+					<input type="password" class="form-control" id="mpassword2" name="mpassword2"
+						placeholder="비밀번호를 입력하세요">
+					<span id="mpasswordError2" class="error" style="color: red"></span>
+				</div>
+				
 				<%-- 
 				<div class="form-group">
 					<label for="mphonenumber">휴대폰번호</label>
@@ -161,10 +229,11 @@ html, body {
 				</div>
 				
 			</form>
-
-		
+				<form method="get" action="loginPage01">
+					<input type="submit" class="btn btn-success" value="로그인"/>
+				</form>
 		</div>
-	
+	</div>
 
 
 

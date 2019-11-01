@@ -21,11 +21,60 @@ public class JoinMemberDao {
 
 	
 	public JoinMember selectJoinMember(String mid) {
+		
+		JoinMember joinMember = sqlSessionTemplate.selectOne("member.selectJoinMemberById", mid);
+		
+		return joinMember;
+		
+		
+//		if (joinMember==null)
+//		{
+//			return true;
+//		} else {
+//			
+//			return false;
+//		}
+		
+		
+	}
+
+
+
+
+	public JoinMember selectedMemberById(String mid) {
+		
 		JoinMember joinMember = sqlSessionTemplate.selectOne("member.selectJoinMemberById", mid);
 		return joinMember;
 	}
 
 
+
+	public int update(JoinMember joinMember) {
+		
+		int rows = sqlSessionTemplate.update("member.update", joinMember);
+		return rows;
+	}
+
+
+
+	public int deleteUserInfo(String mid) {
+		int rows = sqlSessionTemplate.delete("member.delete", mid);
+		return rows;
+	}
+	
 	
 
 }
+
+//private static JoinMemberDao instance;
+//private JoinMemberDao() {}
+//
+//public static JoinMemberDao getInstance() {
+//	
+//	if(instance == null) 
+//		instance = new JoinMemberDao();
+//		return instance;
+//		
+//	
+//	
+//}

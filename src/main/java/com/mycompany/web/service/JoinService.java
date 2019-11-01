@@ -1,5 +1,7 @@
 package com.mycompany.web.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,13 +26,42 @@ public class JoinService {
 	public boolean checkMid(String mid) {
 		
 		JoinMember joinMember = joinMemberDao.selectJoinMember(mid);
+		
 		if (joinMember == null) {
 			
-			return true;	
+			return true;
 		} else {
 			
 			return false;
 		}
+		
+//		boolean result = joinMemberDao.selectJoinMember(mid);
+//		return result;	
+		
+	}
+
+
+
+	public JoinMember selectedMemberById(String mid) {
+		
+		JoinMember joinMember = joinMemberDao.selectedMemberById(mid);
+		return joinMember;
+	}
+
+
+
+	public void correctJoinContent(JoinMember joinMember) {
+		
+		joinMemberDao.update(joinMember);
+		
+		
+	}
+
+
+
+	public void deleteUserInfo(String mid) {
+		
+		joinMemberDao.deleteUserInfo(mid);
 		
 	}
 
