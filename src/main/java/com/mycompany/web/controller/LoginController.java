@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,15 +27,40 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping("/loginPage01")
-	public String loginPage01() {
+//	@RequestMapping("/loginPage01")
+//	public String loginPage01() {
+//		
+//		
+//		return "loginpage/loginPage01";
+//		
+//	}
+	
+	
+	@RequestMapping("loginpage/loginPage01")
+	public String loginPage01(String error, Model model) {
+		
+		if (error != null) {
+			
+			if (error.equals("fail_mid")) {
+				
+				model.addAttribute("midError", "아이디가 존재하지 않습니다");
+			} else if (error.equals("fail_mpassword")) {
+				
+				model.addAttribute("mpasswordError", "비밀번호가 존재하지 않습니다");
+			}
+			
+			
+		} 
 		
 		return "loginpage/loginPage01";
 		
 	}
 	
+	
 	@Autowired
 	private LoginService loginService;
+	
+	
 	
 	@PostMapping("/login")
 	public String login(String mid, String mpassword, HttpSession session) {
